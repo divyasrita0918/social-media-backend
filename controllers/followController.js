@@ -1,4 +1,5 @@
 import {followUser,unfollowUser,isFollowing,getFollowers,getFollowing} from "../models/followModel.js";
+import { createNotification } from "../models/notificationModel.js";
 
 export const follow = async (req, res) => {
     try {
@@ -16,6 +17,11 @@ export const follow = async (req, res) => {
             });
         }
         const follow = await followUser(followerId, userId);
+        await createNotification(
+        userId,
+        `${req.user.username} started following you`
+        );
+
         res.status(201).json(follow);
 
     } catch (error) {

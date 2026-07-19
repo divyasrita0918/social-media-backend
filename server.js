@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import pool from "./config/db.js"
 import "./config/minio.js"
 import "./config/redis.js"
+import "./workers/welcomeWorker.js"
 
 import userRouter from "./router/userRoutes.js"
 import postRouter from "./router/postRoutes.js"
@@ -13,6 +14,7 @@ import profileRouter from "./router/profileRoutes.js";
 import followRouter from "./router/followRoutes.js";
 import feedRouter from "./router/feedRoutes.js"; 
 import { errorHandler } from "./middleware/errorMiddleware.js"
+import notificationRouter from "./router/notificationRoutes.js";
 
 dotenv.config();
 
@@ -28,6 +30,7 @@ app.use("/api/likes", likeRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/follows", followRouter);
 app.use("/api/feed", feedRouter);
+app.use("/api/notifications", notificationRouter);
 app.use(errorHandler)
 
 app.get('/', async(req,res)=>{

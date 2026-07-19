@@ -1,4 +1,6 @@
 import {createLike,removeLike,getLikesCount,hasUserLiked} from "../models/likeModel.js";
+import { getPostById } from "../models/postModel.js";
+import { createNotification } from "../models/notificationModel.js";
 
 export const likePost = async (req, res) => {
     try {
@@ -13,6 +15,16 @@ export const likePost = async (req, res) => {
         }
 
         const like = await createLike(userId, postId);
+        const post = await getPostById(postId);
+
+        if (post.user_id !== userId) {
+
+            await createNotification(
+            post.user_id,
+            `${req.user.username} liked your post`
+            );
+
+        }
         res.status(201).json(like);
     } catch (error) {
         console.log(error);
