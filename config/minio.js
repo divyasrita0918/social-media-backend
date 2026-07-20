@@ -42,5 +42,3 @@ export const uploadToMinio = async (file) => {
 };
 
 export default minioClient;
-
-export default minioClient;
