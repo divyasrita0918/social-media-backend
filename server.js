@@ -13,8 +13,8 @@ import likeRouter from "./router/likeRoutes.js";
 import profileRouter from "./router/profileRoutes.js";
 import followRouter from "./router/followRoutes.js";
 import feedRouter from "./router/feedRoutes.js"; 
-import { errorHandler } from "./middleware/errorMiddleware.js"
 import notificationRouter from "./router/notificationRoutes.js";
+import { errorHandler } from "./middleware/errorMiddleware.js"
 
 dotenv.config();
 
