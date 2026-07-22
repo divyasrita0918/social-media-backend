@@ -20,7 +20,7 @@ const worker = new Worker(
 
                  Click the link below to verify your email:
 
-                 http://localhost:3000/api/users/verify/${job.data.token}`
+                 http://20.207.111.219:3000/api/users/verify/${job.data.token}`
             });
             
             console.log(`Welcome email sent to ${job.data.email}`);
