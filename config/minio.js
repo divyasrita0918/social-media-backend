@@ -35,7 +35,10 @@ export const uploadToMinio = async (file) => {
     await minioClient.putObject(
         bucketName,
         fileName,
-        file.buffer
+        file.buffer,
+        file.buffer.length,{
+            "Content-Type": file.mimetype,
+        }
     );
 
     return `http://localhost:9000/${bucketName}/${fileName}`;
