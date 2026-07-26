@@ -4,6 +4,7 @@ import pool from "./config/db.js"
 import "./config/minio.js"
 import "./config/redis.js"
 import "./workers/welcomeWorker.js"
+import "./workers/notificationWorker.js"
 
 import userRouter from "./router/userRoutes.js"
 import postRouter from "./router/postRoutes.js"

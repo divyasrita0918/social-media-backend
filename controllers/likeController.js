@@ -1,6 +1,6 @@
 import {createLike,removeLike,getLikesCount,hasUserLiked} from "../models/likeModel.js";
 import { getPostById } from "../models/postModel.js";
-import { createNotification } from "../models/notificationModel.js";
+import { sendNotification } from "../services/notificationService.js";
 
 export const likePost = async (req, res) => {
     try {
@@ -19,7 +19,7 @@ export const likePost = async (req, res) => {
 
         if (post.user_id !== userId) {
 
-            await createNotification(
+            await sendNotification(
             post.user_id,
             `${req.user.username} liked your post`
             );

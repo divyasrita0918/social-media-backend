@@ -53,3 +53,15 @@ export const verifyUser = async (id) => {
 
     return result.rows[0];
 };
+
+export const findUserById = async (id) => {
+
+    const result = await pool.query(
+        `SELECT id, username, email
+         FROM users
+         WHERE id = $1`,
+        [id]
+    );
+
+    return result.rows[0];
+};

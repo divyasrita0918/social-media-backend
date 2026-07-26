@@ -1,6 +1,6 @@
 import { createComment, getCommentsByPostId, getCommentById, deleteComment } from "../models/commentModel.js";
 import { getPostById } from "../models/postModel.js";
-import { createNotification } from "../models/notificationModel.js";
+import { sendNotification } from "../services/notificationService.js";
 
 export const createCommentController = async (req, res) => {
     try {
@@ -17,7 +17,7 @@ export const createCommentController = async (req, res) => {
 
         if (post.user_id !== userId) {
 
-             await createNotification(
+             await sendNotification(
                 post.user_id,
                `${req.user.username} commented on your post`
              );
