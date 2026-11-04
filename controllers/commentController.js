@@ -6,26 +6,26 @@ export const createCommentController = async (req, res) => {
     try {
         const { content } = req.body;
         const postId = req.params.id;
+        const userId = req.user.id;
 
         const comment = await createComment(
             content,
-            req.user.id,
+            userId,
             postId
         );
 
         const post = await getPostById(postId);
 
-        if (post.user_id !== userId) {
-
-             await sendNotification(
+        if (post && post.user_id !== userId) {
+            await sendNotification(
                 post.user_id,
-               `${req.user.username} commented on your post`
-             );
-
+                `${req.user.username} commented on your post`
+            );
         }
         res.status(201).json(comment);
 
     } catch (error) {
+        console.error(error);
         res.status(500).json({
             message: "Server Error"
         });
@@ -38,7 +38,7 @@ export const getCommentsController = async (req, res) => {
         const comments = await getCommentsByPostId(postId);
         res.json(comments);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
             message: "Server Error"
         });
@@ -64,7 +64,7 @@ export const deleteCommentController = async (req, res) => {
             message: "Comment deleted successfully"
         });
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
             message: "Server Error"
         });

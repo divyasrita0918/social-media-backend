@@ -2,12 +2,24 @@
   "name": "social-media-backend",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
-  "main": "index.js",
+  "description": "Production-ready Social Media RESTful API built with Node.js, Express, PostgreSQL, Redis, BullMQ, and MinIO S3",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "express",
+    "postgresql",
+    "redis",
+    "bullmq",
+    "minio",
+    "s3",
+    "sharp",
+    "rest-api",
+    "social-media"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

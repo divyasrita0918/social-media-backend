@@ -7,8 +7,8 @@ export const welcomeQueue = new Queue(
     "welcome-email",
     {
         connection: {
-            host: "my-redis",
-            port: 6379
+            host: process.env.REDIS_HOST || "127.0.0.1",
+            port: Number(process.env.REDIS_PORT) || 6379
         }
     }
 );
